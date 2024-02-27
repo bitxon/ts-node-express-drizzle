@@ -1,33 +1,23 @@
 import { Request, Response } from "express";
-import { eq } from "drizzle-orm";
-import db from "../db/db.js";
-import { accountTable } from "../db/schema.js";
+import * as AccountService from "../service/account-service.js";
 
 export const createAccount = async (req: Request, res: Response) => {
-  const result = await db
-    .insert(accountTable)
-    .values({
-      email: req.body.email,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-    })
-    .returning();
-
-  res.status(201).json(result[0]);
+  const result = await AccountService.create(req.body);
+  res.status(201).json(result);
 };
 
-export const getAllAccounts = async (req: Request, res: Response) => {
-  const accounts = await db.select().from(accountTable);
+export const findAllAccounts = async (req: Request, res: Response) => {
+  const accounts = await AccountService.findAll();
   res.status(200).json(accounts);
 };
 
 export const getOneAccountById = async (req: Request, res: Response) => {
-  const id: number = Number(req.params.id);
-  const results = await db.select().from(accountTable).where(eq(accountTable.id, id));
+  const id = Number(req.params.id);
+  const result = await AccountService.findById(id);
 
-  if (results.length == 0) {
+  if (!result) {
     res.status(404).send();
   } else {
-    res.status(200).json(results[0]);
+    res.status(200).json(result);
   }
 };

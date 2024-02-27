@@ -6,13 +6,13 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npx tsc && npm run drizzle:generate",
+    "infra": "docker compose up -d",
     "start": "node dist/db/migrate.js && node dist/index.js",
-    "dev": "npm run drizzle:generate && npm run drizzle:migrate && nodemon",
+    "dev": "npm run infra && npm run drizzle:generate && npm run drizzle:migrate && nodemon",
     "drizzle:generate": "drizzle-kit generate:pg",
     "drizzle:migrate": "npx tsx src/db/migrate.ts"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.29.4",
     "express": "^4.18.2",

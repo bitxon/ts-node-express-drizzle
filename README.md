@@ -4,15 +4,12 @@
 
 Run in dev mode (Docker + Drizzle + Nodemon)
 ```shell
-docker-compose up -d
-```
-```shell
 npm run dev
 ```
 
 Compile and Run in prod mode
 ```shell
-docker-compose up -d
+docker compose up -d
 ```
 ```shell
 npm run build && npm run start
