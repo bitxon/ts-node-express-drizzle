@@ -9,7 +9,7 @@ npm run dev
 
 Compile and Run in prod mode
 ```shell
-docker compose up -d
+npm run docker:up
 ```
 ```shell
 npm run build && npm run start

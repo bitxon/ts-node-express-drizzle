@@ -7,9 +7,10 @@
     "clean": "rm -rf dist coverage",
     "test": "jest --coverage",
     "build": "npx tsc && npm run drizzle:generate && npm run test",
-    "infra": "docker compose up -d",
     "start": "node dist/db/migrate.js && node dist/index.js",
-    "dev": "npm run infra && npm run drizzle:generate && npm run drizzle:migrate && nodemon",
+    "dev": "npm run docker:up && npm run drizzle:generate && npm run drizzle:migrate && nodemon",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
     "drizzle:generate": "drizzle-kit generate:pg",
     "drizzle:migrate": "npx tsx src/db/migrate.ts"
   },
