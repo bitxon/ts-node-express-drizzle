@@ -4,8 +4,9 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npx tsc && npm run drizzle:generate",
+    "clean": "rm -rf dist coverage",
+    "test": "jest --coverage",
+    "build": "npx tsc && npm run drizzle:generate && npm run test",
     "infra": "docker compose up -d",
     "start": "node dist/db/migrate.js && node dist/index.js",
     "dev": "npm run infra && npm run drizzle:generate && npm run drizzle:migrate && nodemon",
@@ -20,9 +21,15 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.11.20",
+    "@types/supertest": "^6.0.2",
     "drizzle-kit": "^0.20.14",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "ts-sinon": "^2.0.2",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }
