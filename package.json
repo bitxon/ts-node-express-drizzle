@@ -12,7 +12,7 @@
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "drizzle:generate": "drizzle-kit generate:pg",
-    "drizzle:migrate": "npx tsx src/db/migrate.ts"
+    "drizzle:migrate": "npx tsx src/db/migrate-standalone.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
