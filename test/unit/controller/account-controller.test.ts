@@ -5,6 +5,9 @@ import { Account, RawAccount } from "../../../src/api/account";
 import * as AccountController from "../../../src/controller/account-controller";
 import * as AccountService from "../../../src/service/account-service";
 
+// use followign line to prevent jest from loading the actual db.js
+// jest.mock("../../../src/db/db", () => () => false);
+
 describe("AccountController", () => {
   let reqStub: sinon.SinonStubbedInstance<Request>;
   let resStub: sinon.SinonStubbedInstance<Response>;
