@@ -21,3 +21,8 @@ export const getOneAccountById = async (req: Request, res: Response) => {
     res.status(200).json(result);
   }
 };
+
+export const transfer = async (req: Request, res: Response) => {
+  await AccountService.transfer(req.body);
+  res.status(204).send();
+};

@@ -16,7 +16,6 @@ npm run build && npm run start
 ```
 
 
-
 ## Test application
 
 <details>
@@ -28,7 +27,9 @@ curl --location 'http://localhost:8080/accounts' \
 --data-raw '{
     "email": "mike@mail.com",
     "firstName": "Mike",
-    "lastName": "Brown"
+    "lastName": "Brown",
+    "currency": "USD",
+    "balance": 100
 }'
 ```
 </details>
@@ -46,5 +47,19 @@ curl --location 'http://localhost:8080/accounts'
 
 ```shell
 curl --location 'http://localhost:8080/accounts/1'
+```
+</details>
+
+<details>
+    <summary>Transfer Money</summary>
+
+```shell
+curl --location 'http://localhost:8080/accounts/transfer' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "senderId": 1,
+    "recipientId": 2,
+    "amount": 100
+}'
 ```
 </details>

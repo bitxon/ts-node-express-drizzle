@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import app from "../../src/app";
-import { Account, RawAccount } from "../../src/api/account";
+import { Account, RawAccount, Transfer } from "../../src/api/account";
 
 describe("API: Accounts", () => {
   test("GET /accounts", async () => {
@@ -50,5 +50,39 @@ describe("API: Accounts", () => {
       .then((response) => {
         expect(response.body).toEqual(account);
       });
+  });
+
+  test("POST /accounts/transfer", async () => {
+    // given
+    const account1: Account = (
+      await supertest(app).post("/accounts").send({
+        email: "john1@mail.com",
+        firstName: "John1",
+        lastName: "Doe1",
+        currency: "USD",
+        amount: 100,
+      })
+    ).body;
+    const account2: Account = (
+      await supertest(app).post("/accounts").send({
+        email: "john2@mail.com",
+        firstName: "John2",
+        lastName: "Doe2",
+        currency: "USD",
+        amount: 100,
+      })
+    ).body;
+    const transfer: Transfer = { senderId: account1.id, recipientId: account2.id, amount: 100 };
+
+    // when-then
+    return supertest(app)
+      .post(`/accounts/transfer`)
+      .send(transfer)
+      .expect(204)
+      .then((response) => {
+        expect(response.body).toEqual({});
+      });
+
+    // aditional checks
   });
 });

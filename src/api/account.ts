@@ -9,3 +9,9 @@ export interface RawAccount {
 export interface Account extends RawAccount {
   id: number;
 }
+
+export interface Transfer {
+  senderId: number;
+  recipientId: number;
+  amount: number;
+}

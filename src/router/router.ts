@@ -7,6 +7,8 @@ const router = Router();
 router.post("/accounts", AccountController.createAccount);
 router.get("/accounts", AccountController.findAllAccounts);
 router.get("/accounts/:id", AccountController.getOneAccountById);
+router.post("/accounts/transfer", AccountController.transfer);
+
 // monitoring
 router.get("/health", HealthController.health);
 
