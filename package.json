@@ -7,7 +7,7 @@
     "clean": "rm -rf dist coverage",
     "test": "jest --coverage",
     "build": "npx tsc && npm run drizzle:generate && npm run test",
-    "start": "node dist/db/migrate.js && node dist/index.js",
+    "start": "node dist/db/migrate-standalone.js && node dist/index.js",
     "dev": "npm run docker:up && npm run drizzle:generate && npm run drizzle:migrate && nodemon",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
