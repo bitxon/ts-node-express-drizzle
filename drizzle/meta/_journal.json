@@ -8,6 +8,13 @@
       "when": 1709041617143,
       "tag": "0000_spotty_longshot",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1709892908613,
+      "tag": "0001_slow_the_renegades",
+      "breakpoints": true
     }
   ]
 }

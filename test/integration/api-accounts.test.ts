@@ -14,7 +14,13 @@ describe("API: Accounts", () => {
   });
 
   test("POST /accounts", async () => {
-    const accountIn: RawAccount = { email: "some@mail.com", firstName: "Joe", lastName: "Doe" };
+    const accountIn: RawAccount = {
+      email: "some@mail.com",
+      firstName: "Some",
+      lastName: "Doe",
+      currency: "USD",
+      balance: 100,
+    };
     return supertest(app)
       .post("/accounts")
       .send(accountIn)
@@ -28,7 +34,13 @@ describe("API: Accounts", () => {
   });
 
   test("GET /accounts/:id", async () => {
-    const rawAccount: RawAccount = { email: "john1@mail.com", firstName: "John", lastName: "Doe" };
+    const rawAccount: RawAccount = {
+      email: "john1@mail.com",
+      firstName: "John",
+      lastName: "Doe",
+      currency: "USD",
+      balance: 100,
+    };
     const account: Account = (await supertest(app).post("/accounts").send(rawAccount)).body;
 
     return supertest(app)

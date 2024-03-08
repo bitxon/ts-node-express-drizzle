@@ -4,10 +4,7 @@ import db from "../db/db.js";
 import { accountTable } from "../db/schema.js";
 
 export const create = async (input: RawAccount): Promise<Account> => {
-  const results = await db()
-    .insert(accountTable)
-    .values({ email: input.email, firstName: input.firstName, lastName: input.lastName })
-    .returning();
+  const results = await db().insert(accountTable).values(input).returning();
   return results[0]!;
 };
 

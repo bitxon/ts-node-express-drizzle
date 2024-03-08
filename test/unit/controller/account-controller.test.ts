@@ -32,7 +32,7 @@ describe("AccountController", () => {
 
   test("findAll", async () => {
     // given
-    const accounts: Account[] = [{ id: 1, email: "some@mail.com", firstName: "Joe", lastName: "Doe" }];
+    const accounts: Account[] = [{ id: 1 } as unknown as Account];
     findAllStub.resolves(accounts);
 
     // when
@@ -45,9 +45,9 @@ describe("AccountController", () => {
 
   test("findById -> 200", async () => {
     // given
-    const account: Account = { id: 1, email: "some@mail.com", firstName: "Joe", lastName: "Doe" };
+    const account: Account = { id: 1 } as unknown as Account;
 
-    reqStub.params = { id: "1" };
+    reqStub.params = { id: String(account.id) };
     findByIdStub.resolves(account);
 
     // when
@@ -56,7 +56,7 @@ describe("AccountController", () => {
     // then
     sinon.assert.calledWith(resStub.status, 200);
     sinon.assert.calledWith(resStub.json, account);
-    sinon.assert.calledWith(findByIdStub, 1);
+    sinon.assert.calledWith(findByIdStub, account.id);
   });
 
   test("findById -> 404", async () => {
@@ -75,8 +75,8 @@ describe("AccountController", () => {
 
   test("createAccount", async () => {
     // given
-    const accountIn: RawAccount = { email: "some@mail.com", firstName: "Joe", lastName: "Doe" };
-    const accountOut: Account = { id: 1, email: "some@mail.com", firstName: "Joe", lastName: "Doe" };
+    const accountIn: RawAccount = { email: "some@mail.com" } as unknown as RawAccount;
+    const accountOut: Account = { id: 1, email: "some@mail.com" } as unknown as Account;
 
     reqStub.body = accountIn;
     createStub.resolves(accountOut);
